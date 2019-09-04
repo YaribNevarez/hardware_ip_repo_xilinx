@@ -1,0 +1,80 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Fri Dec 16 18:29:08 2016
+| Host         : Yarib running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file TFT_SPI_DISPLAY_240x320_v1_0_control_sets_placed.rpt
+| Design       : TFT_SPI_DISPLAY_240x320_v1_0
+| Device       : xc7z010
+---------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    27 |
+| Unused register locations in slices containing registers |    45 |
++----------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              10 |            4 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              17 |            5 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             184 |           40 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++-------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+
+|       Clock Signal      |                                    Enable Signal                                    |                                      Set/Reset Signal                                      | Slice Load Count | Bel Load Count |
++-------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+
+| ~s00_axi_aclk_IBUF_BUFG |                                                                                     |                                                                                            |                1 |              1 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/axi_arready_i_1_n_0                       | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              2 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/axi_awready0                              | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              2 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/p_0_in[17]                                | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              2 |
+| ~s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/settle_time_counter     | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/settle_time_counter[3]_i_1_n_0 |                1 |              4 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/i_tx_buffer[7]_i_1_n_0  | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              7 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/p_0_in[8]                                 | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              7 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/i_tx_buffer[15]_i_1_n_0 | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/i_tx_buffer[23]_i_1_n_0 | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/i_tx_buffer[31]_i_1_n_0 | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg1[15]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg1[23]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg1[31]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg1[7]_i_1_n_0                       | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg2[15]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg2[23]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg2[31]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg2[7]_i_1_n_0                       | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg3[15]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg3[23]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg3[31]_i_1_n_0                      | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/slv_reg3[7]_i_1_n_0                       | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                4 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/p_0_in[7]                                 | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                1 |              8 |
+| ~s00_axi_aclk_IBUF_BUFG |                                                                                     | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/baud_rate_counter[7]_i_1_n_0   |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG |                                                                                     |                                                                                            |                3 |              9 |
+|  s00_axi_aclk_IBUF_BUFG |                                                                                     | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |                4 |              9 |
+|  s00_axi_aclk_IBUF_BUFG | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/axi_rdata[31]_i_1_n_0                     | TFT_SPI_DISPLAY_240x320_v1_0_S00_AXI_inst/tft_espi_instance/reset                          |               11 |             32 |
++-------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+
+
+
