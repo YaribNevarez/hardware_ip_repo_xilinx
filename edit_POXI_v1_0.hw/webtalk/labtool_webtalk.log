@@ -1,9 +1,0 @@
-
-****** Webtalk v2016.1 (64-bit)
-  **** SW Build 1538259 on Fri Apr  8 15:45:27 MDT 2016
-  **** IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
-
-source c:/zybo_projects/ip_repo/edit_POXI_v1_0.hw/webtalk/labtool_webtalk.tcl -notrace
-webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 49.297 ; gain = 0.000
-INFO: [Common 17-206] Exiting Webtalk at Mon Nov 28 04:08:44 2016...
