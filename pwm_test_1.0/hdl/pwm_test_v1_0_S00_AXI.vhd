@@ -124,6 +124,23 @@ architecture arch_imp of pwm_test_v1_0_S00_AXI is
 	signal byte_index	: integer;
 	signal aw_en	: std_logic;
 	
+	TYPE SLAVE_VECTOR IS ARRAY (OUT_VECTOR_SIZE - 1 DOWNTO 0 ) OF std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+	
+	SIGNAL slv_vec : SLAVE_VECTOR;
+	
+	signal high_reset : std_logic;
+	
+	COMPONENT pwm IS
+    GENERIC (PWM_RESOLUTION         : INTEGER := 16;
+             FREQUENCY_DIVIDER_SIZE : INTEGER := 16);
+    PORT ( clk                : IN STD_LOGIC;
+           reset              : IN STD_LOGIC;
+           enable             : IN STD_LOGIC;
+           pwm_input_value    : IN STD_LOGIC_VECTOR (PWM_RESOLUTION - 1 DOWNTO 0);
+           frequency_divider  : IN STD_LOGIC_VECTOR (FREQUENCY_DIVIDER_SIZE - 1 DOWNTO 0);
+           pwm_out            : OUT STD_LOGIC);
+    END COMPONENT pwm;
+	
 begin
 	-- I/O Connections assignments
 
@@ -392,9 +409,24 @@ begin
 
 
 	-- Add user logic here
+	high_reset <= NOT S_AXI_ARESETN;
+	slv_vec(0) <= slv_reg0;
+	slv_vec(1) <= slv_reg1;
+	slv_vec(2) <= slv_reg2;
+	slv_vec(3) <= slv_reg3;
 	
-	out_vector <= slv_reg0( OUT_VECTOR_SIZE -1 DOWNTO 0);
-
+	--out_vector <= slv_reg0( OUT_VECTOR_SIZE -1 DOWNTO 0);
+	Generate_pwm : FOR i IN 0 TO 3 GENERATE
+	pwm_instances : pwm
+	GENERIC MAP (PWM_RESOLUTION => 16,
+	             FREQUENCY_DIVIDER_SIZE => 16)
+	PORT MAP ( clk => S_AXI_ACLK,
+	           reset => high_reset,
+	           enable => '1',
+	           pwm_input_value => slv_vec(i)(C_S_AXI_DATA_WIDTH - 1 - 16 DOWNTO 0),
+	           frequency_divider => slv_vec(i)(C_S_AXI_DATA_WIDTH - 1 DOWNTO C_S_AXI_DATA_WIDTH - 16),
+	           pwm_out => out_vector(i));
+   END GENERATE;
 	-- User logic ends
 
 end arch_imp;

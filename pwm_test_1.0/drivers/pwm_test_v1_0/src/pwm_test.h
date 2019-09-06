@@ -7,73 +7,41 @@
 #include "xil_types.h"
 #include "xstatus.h"
 
-#define PWM_TEST_S00_AXI_SLV_REG0_OFFSET 0
-#define PWM_TEST_S00_AXI_SLV_REG1_OFFSET 4
-#define PWM_TEST_S00_AXI_SLV_REG2_OFFSET 8
-#define PWM_TEST_S00_AXI_SLV_REG3_OFFSET 12
+typedef enum
+{
+	CHANNEL_FIRST = 0,
+	CHANNEL_0 = CHANNEL_FIRST,
+	CHANNEL_1,
+	CHANNEL_2,
+	CHANNEL_3,
+	/* Add channel here */
+	CHANNEL_LAST = CHANNEL_3
+} PwmChannel;
 
+typedef enum
+{
+	SUCCESS = 0,
+	INVALID_CHANNEL,
+	INVALID_PARAMETER,
+	FAIL
+} PwmResult;
 
-/**************************** Type Definitions *****************************/
-/**
- *
- * Write a value to a PWM_TEST register. A 32 bit write is performed.
- * If the component is implemented in a smaller width, only the least
- * significant data is written.
- *
- * @param   BaseAddress is the base address of the PWM_TESTdevice.
- * @param   RegOffset is the register offset from the base to write to.
- * @param   Data is the data written to the register.
- *
- * @return  None.
- *
- * @note
- * C-style signature:
- * 	void PWM_TEST_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32 Data)
- *
- */
-#define PWM_TEST_mWriteReg(BaseAddress, RegOffset, Data) \
-  	Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+typedef uint16_t PwmValue;
+typedef uint16_t PwmFrequencyDiv;
 
-/**
- *
- * Read a value from a PWM_TEST register. A 32 bit read is performed.
- * If the component is implemented in a smaller width, only the least
- * significant data is read from the register. The most significant data
- * will be read as 0.
- *
- * @param   BaseAddress is the base address of the PWM_TEST device.
- * @param   RegOffset is the register offset from the base to write to.
- *
- * @return  Data is the data from the register.
- *
- * @note
- * C-style signature:
- * 	u32 PWM_TEST_mReadReg(u32 BaseAddress, unsigned RegOffset)
- *
- */
-#define PWM_TEST_mReadReg(BaseAddress, RegOffset) \
-    Xil_In32((BaseAddress) + (RegOffset))
+typedef struct
+{
+	PwmResult (* setValue)(PwmChannel, PwmValue);
+	PwmResult (* getValue)(PwmChannel, PwmValue *);
+	PwmResult (* setFrequencyDiv)(PwmChannel, PwmFrequencyDiv);
+	PwmResult (* getFrequencyDiv)(PwmChannel, PwmFrequencyDiv * );
+	uint8_t   (* getDigitalInput)(void);
+} PwmDriver;
 
 /************************** Function Prototypes ****************************/
-/**
- *
- * Run a self-test on the driver/device. Note this may be a destructive test if
- * resets of the device are performed.
- *
- * If the hardware system is not built correctly, this function may never
- * return to the caller.
- *
- * @param   baseaddr_p is the base address of the PWM_TEST instance to be worked on.
- *
- * @return
- *
- *    - XST_SUCCESS   if all self-test code passed
- *    - XST_FAILURE   if any self-test code failed
- *
- * @note    Caching must be turned off for this function to work.
- * @note    Self test may fail if data memory and device are not on the same bus.
- *
- */
-XStatus PWM_TEST_Reg_SelfTest(void * baseaddr_p);
+
+PwmDriver * PwmDriver_instance(void);
+
+XStatus PWM_TEST_SelfTest(void);
 
 #endif // PWM_TEST_H
