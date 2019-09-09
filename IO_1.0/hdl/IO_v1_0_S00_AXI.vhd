@@ -5,7 +5,9 @@ use ieee.numeric_std.all;
 entity IO_v1_0_S00_AXI is
 	generic (
 		-- Users to add parameters here
-
+		----> TODO: Add the parameters here
+		C_S_INPUT_VECTOR_WIDTH  : integer := 4; ----> Try to give names following the convention
+		C_S_OUTPUT_VECTOR_WIDTH : integer := 4; ----> Try to give names following the convention
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
 
@@ -16,7 +18,9 @@ entity IO_v1_0_S00_AXI is
 	);
 	port (
 		-- Users to add ports here
-
+		----> TODO: Add the ports here
+		S_INPUT_VECTOR  : in  std_logic_vector(C_S_INPUT_VECTOR_WIDTH-1 downto 0);  ----> Try to give names following the convention
+		S_OUTPUT_VECTOR : out std_logic_vector(C_S_OUTPUT_VECTOR_WIDTH-1 downto 0); ----> Try to give names following the convention
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -353,12 +357,19 @@ begin
 	    loc_addr := axi_araddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
 	    case loc_addr is
 	      when b"00" =>
-	        reg_data_out <= slv_reg0;
+	        ----> TODO: Here is where the software will read the base_address + 0 (or 0*4) of this AXI Peripheral
+	        ----> reg_data_out <= slv_reg0; ----> 'reg_data_out' is the register to be read in the software once at a time 
+	        reg_data_out <= (31 downto C_S_INPUT_VECTOR_WIDTH => '0') & S_INPUT_VECTOR; ----> I decided to read input directly at the base_address
 	      when b"01" =>
+	       ----> TODO: Here is where the software will read the base_address + 4 (or 1*4) of this AXI Peripheral
+	       ----> 4 is the WIDTH in bytes
 	        reg_data_out <= slv_reg1;
 	      when b"10" =>
+	       ----> TODO: Here is where the software will read the base_address + 8 (or 2*4) of this AXI Peripheral
+	       ----> 4 is the WIDTH in bytes
 	        reg_data_out <= slv_reg2;
 	      when b"11" =>
+	       ----> TODO: Here is where the software will read the base_address + 12 (ot 3*4) of this AXI Peripheral
 	        reg_data_out <= slv_reg3;
 	      when others =>
 	        reg_data_out  <= (others => '0');
@@ -385,7 +396,8 @@ begin
 
 
 	-- Add user logic here
-
+	----> TODO: As the prev comment ADD your logic here
+	S_OUTPUT_VECTOR <= slv_reg0( C_S_OUTPUT_VECTOR_WIDTH-1 DOWNTO 0); ----> Whatever the software writes at the base_address, it'll be forwarded to the output_vector 
 	-- User logic ends
 
 end arch_imp;

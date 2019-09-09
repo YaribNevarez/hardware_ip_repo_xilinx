@@ -5,7 +5,9 @@ use ieee.numeric_std.all;
 entity IO_v1_0 is
 	generic (
 		-- Users to add parameters here
-
+        ----> TODO: Add the parameters here
+		C_S00_INPUT_VECTOR_WIDTH  : integer := 4; ----> Try to give names following the convention
+		C_S00_OUTPUT_VECTOR_WIDTH : integer := 4; ----> Try to give names following the convention
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
 
@@ -16,7 +18,9 @@ entity IO_v1_0 is
 	);
 	port (
 		-- Users to add ports here
-
+		----> TODO: Add the ports here
+		s00_input_vector  : in  std_logic_vector(C_S00_INPUT_VECTOR_WIDTH-1 downto 0);  ----> Try to give names following the convention
+		s00_output_vector : out std_logic_vector(C_S00_OUTPUT_VECTOR_WIDTH-1 downto 0); ----> Try to give names following the convention
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -51,10 +55,18 @@ architecture arch_imp of IO_v1_0 is
 	-- component declaration
 	component IO_v1_0_S00_AXI is
 		generic (
+		----> TODO: Add the parameters here
+		C_S_INPUT_VECTOR_WIDTH  : integer := 4; ----> Try to give names following the convention
+		C_S_OUTPUT_VECTOR_WIDTH : integer := 4; ----> Try to give names following the convention
+		----> Do not modify below here
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
 		C_S_AXI_ADDR_WIDTH	: integer	:= 4
 		);
 		port (
+		----> TODO: Add the ports here
+		S_INPUT_VECTOR  : in  std_logic_vector(C_S_INPUT_VECTOR_WIDTH-1 downto 0);  ----> Try to give names following the convention
+		S_OUTPUT_VECTOR : out std_logic_vector(C_S_OUTPUT_VECTOR_WIDTH-1 downto 0); ----> Try to give names following the convention
+		----> Do not modify below here
 		S_AXI_ACLK	: in std_logic;
 		S_AXI_ARESETN	: in std_logic;
 		S_AXI_AWADDR	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -84,10 +96,18 @@ begin
 -- Instantiation of Axi Bus Interface S00_AXI
 IO_v1_0_S00_AXI_inst : IO_v1_0_S00_AXI
 	generic map (
+	    ----> TODO: Add the ports here
+	    C_S_INPUT_VECTOR_WIDTH => C_S00_INPUT_VECTOR_WIDTH,
+		C_S_OUTPUT_VECTOR_WIDTH => C_S00_OUTPUT_VECTOR_WIDTH,
+		----> Do not modify below here
 		C_S_AXI_DATA_WIDTH	=> C_S00_AXI_DATA_WIDTH,
 		C_S_AXI_ADDR_WIDTH	=> C_S00_AXI_ADDR_WIDTH
 	)
 	port map (
+	    ----> TODO: Add the ports here
+        S_INPUT_VECTOR  => s00_input_vector,
+        S_OUTPUT_VECTOR => s00_output_vector,
+        ----> Do not modify below here
 		S_AXI_ACLK	=> s00_axi_aclk,
 		S_AXI_ARESETN	=> s00_axi_aresetn,
 		S_AXI_AWADDR	=> s00_axi_awaddr,
