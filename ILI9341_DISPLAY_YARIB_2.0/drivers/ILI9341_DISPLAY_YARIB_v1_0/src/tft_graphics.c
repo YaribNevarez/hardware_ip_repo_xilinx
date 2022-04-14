@@ -202,7 +202,7 @@ static void TFTGraphics_initialize()
 	//Display on
 	tft_spi_write_command(ILI9341_CMD_DISPLAY_ON);
 
-	usleep(10000); // Wait 10ms
+	usleep(100000); // Wait 100ms
 	TFTGraphics_speed(0xFF); // Speed up!
 }
 
