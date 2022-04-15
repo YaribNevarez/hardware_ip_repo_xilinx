@@ -19,6 +19,7 @@ entity ILI9341_DISPLAY_YARIB_v2_0_S00_AXI is
 
 		-- TFT SPI display 240x320
 		utft_mosi : out std_logic;
+		utft_miso : in std_logic;
 		utft_sck  : out std_logic;
 		utft_dc   : out std_logic;
 		utft_r    : out std_logic;
@@ -165,6 +166,8 @@ TYPE TFT_DC_STATE_TYPE IS (DC_LOW, DC_HIGH);
 
 SIGNAL    spi_reset_high                 : STD_LOGIC;
 SIGNAL    spi_cs_internal                : STD_LOGIC;
+
+signal data_rx	:std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
 
 begin
 	-- I/O Connections assignments
@@ -397,7 +400,7 @@ begin
 	-- and the slave is ready to accept the read address.
 	slv_reg_rden <= axi_arready and S_AXI_ARVALID and (not axi_rvalid) ;
 
-	process (slv_reg0, slv_reg1, slv_reg2, slv_reg3, axi_araddr, S_AXI_ARESETN, slv_reg_rden,
+	process (slv_reg0, slv_reg1, slv_reg2, slv_reg3, axi_araddr, S_AXI_ARESETN, slv_reg_rden, data_rx,
 	tft_reset, tft_data_command, tft_spi_transmission_done, tft_spi_settle_time, tft_spi_cs_force,
 	tft_spi_data_length, tft_spi_clock_polarity, tft_spi_clock_phase, tft_spi_baud_rate_divider)
 	variable loc_addr :std_logic_vector(OPT_MEM_ADDR_BITS downto 0);
@@ -411,7 +414,7 @@ begin
                             tft_spi_transmission_done & tft_spi_settle_time(TFT_SPI_SETTLE_TIME_SIZE-1 DOWNTO TFT_SPI_SETTLE_TIME_SIZE-2) & tft_spi_cs_force & tft_spi_data_length & tft_spi_clock_polarity & tft_spi_clock_phase &
                             tft_spi_baud_rate_divider;
 	      when b"01" =>
-	        reg_data_out <= slv_reg1;
+	        reg_data_out <= data_rx;
 	      when b"10" =>
 	        reg_data_out <= slv_reg2;
 	      when b"11" =>
@@ -503,10 +506,10 @@ begin
                start_transmission => tft_spi_start_transmission,
                transmission_done  => tft_spi_transmission_done,
                data_tx  => slv_reg1,
-               data_rx  => OPEN,
+               data_rx  => data_rx,
                spi_clk  => utft_sck,
                spi_MOSI => utft_mosi,
-               spi_MISO => '-',
+               spi_MISO => utft_miso,
                spi_cs   => spi_cs_internal);
     ------------------------------------------------------------------------
 	-- User logic ends

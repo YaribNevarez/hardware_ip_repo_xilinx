@@ -19,6 +19,7 @@ entity ILI9341_DISPLAY_YARIB_v2_0 is
 
 		-- TFT SPI display 240x320
 		tft_mosi : out std_logic;
+		tft_miso : in  std_logic;
 		tft_sck  : out std_logic;
 		tft_dc   : out std_logic;
 		tft_r    : out std_logic;
@@ -63,6 +64,7 @@ architecture arch_imp of ILI9341_DISPLAY_YARIB_v2_0 is
 		port (
 		-- TFT SPI display 240x320
 		utft_mosi : out std_logic;
+		utft_miso : in std_logic;
 		utft_sck  : out std_logic;
 		utft_dc   : out std_logic;
 		utft_r    : out std_logic;
@@ -103,6 +105,7 @@ ILI9341_DISPLAY_YARIB_v2_0_S00_AXI_inst : ILI9341_DISPLAY_YARIB_v2_0_S00_AXI
 	port map (
 		-- TFT SPI display 240x320
 		utft_mosi => tft_mosi,
+		utft_miso => tft_miso,
 		utft_sck  => tft_sck,
 		utft_dc   => tft_dc,
 		utft_r    => tft_r,
