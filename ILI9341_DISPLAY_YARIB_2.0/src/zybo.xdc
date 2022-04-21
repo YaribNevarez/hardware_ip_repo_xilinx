@@ -202,31 +202,31 @@
 #############################
 ##IO_L15P_T2_DQS_34
 ##JB1
-set_property PACKAGE_PIN T20 [get_ports {tft_mosi}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tft_mosi}]
+set_property PACKAGE_PIN T20 [get_ports {tft_mosi_0}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tft_mosi_0}]
 
 ##IO_L15N_T2_DQS_34
 ##JB2
-set_property PACKAGE_PIN U20 [get_ports {tft_dc}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tft_dc}]
+set_property PACKAGE_PIN U20 [get_ports {tft_dc_0}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tft_dc_0}]
 
 ##IO_L16P_T2_34
 ##JB3
-set_property PACKAGE_PIN V20 [get_ports {tft_r}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tft_r}]
+set_property PACKAGE_PIN V20 [get_ports {tft_r_0}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tft_r_0}]
 
 ##IO_L16N_T2_34
 ##JB4
-set_property PACKAGE_PIN W20 [get_ports {tft_cs}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tft_cs}]
+set_property PACKAGE_PIN W20 [get_ports {tft_cs_0}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tft_cs_0}]
 
 ##IO_L17P_T2_34
 ##JB7
-set_property PACKAGE_PIN Y18 [get_ports {tft_sck}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tft_sck}]
+set_property PACKAGE_PIN Y18 [get_ports {tft_sck_0}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tft_sck_0}]
 
-set_property PACKAGE_PIN Y19 [get_ports { tft_miso }]
-set_property IOSTANDARD LVCMOS33 [get_ports { tft_miso }]
+set_property PACKAGE_PIN Y19 [get_ports {tft_miso_0}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tft_miso_0}]
 
 ##Pmod Header JB
 #set_property -dict { PACKAGE_PIN T20   IOSTANDARD LVCMOS33 } [get_ports { jb_p[0] }]; #IO_L15P_T2_DQS_34 Sch=JB1_p
